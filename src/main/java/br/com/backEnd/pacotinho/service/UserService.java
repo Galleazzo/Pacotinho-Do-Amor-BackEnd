@@ -13,15 +13,15 @@ public class UserService{
     @Autowired
     private UserRepository repository;
 
-    public User saveUser(UserDTO usuario){
+    public User saveUser(UserDTO userDTO){
         User user = new User();
-        if(usuario.getId() != null)
-            user.setId(usuario.getId());
+        if(userDTO.getId() != null)
+            user.setId(userDTO.getId());
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode(usuario.getPassword());
+        String password = passwordEncoder.encode(userDTO.getPassword());
 
-        user.setUsername(usuario.getUsername());
+        user.setUsername(userDTO.getUsername());
         user.setPassword(password);
 
         return repository.save(user);

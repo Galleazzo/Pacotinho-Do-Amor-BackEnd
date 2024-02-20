@@ -1,39 +1,17 @@
-package br.com.backEnd.pacotinho.model;
+package br.com.backEnd.pacotinho.model.dto;
 
-import br.com.backEnd.pacotinho.type.AnimalAge;
-import br.com.backEnd.pacotinho.type.AnimalSize;
-import br.com.backEnd.pacotinho.type.AnimalType;
+public class AnimalsDTO {
 
-import javax.persistence.*;
-
-@Entity(name = "animals")
-public class Animals {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "instagramURL")
     private String instagramURL;
-
-    @Column(name = "animalAge")
-    private AnimalAge animalAge;
-
-    @Column(name = "animalType")
-    private AnimalType animalType;
-
-    @Column(name = "race")
+    private String animalAge;
+    private String animalType;
     private String race;
-
-    @Column(name = "size")
-    private AnimalSize size;
-
-    @Column(name = "description")
+    private String size;
     private String description;
+
+    public AnimalsDTO(){}
 
     public Long getId() {
         return id;
@@ -59,19 +37,19 @@ public class Animals {
         this.instagramURL = instagramURL;
     }
 
-    public AnimalAge getAnimalAge() {
+    public String getAnimalAge() {
         return animalAge;
     }
 
-    public void setAnimalAge(AnimalAge animalAge) {
+    public void setAnimalAge(String animalAge) {
         this.animalAge = animalAge;
     }
 
-    public AnimalType getAnimalType() {
+    public String getAnimalType() {
         return animalType;
     }
 
-    public void setAnimalType(AnimalType animalType) {
+    public void setAnimalType(String animalType) {
         this.animalType = animalType;
     }
 
@@ -83,11 +61,11 @@ public class Animals {
         this.race = race;
     }
 
-    public AnimalSize getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(AnimalSize size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

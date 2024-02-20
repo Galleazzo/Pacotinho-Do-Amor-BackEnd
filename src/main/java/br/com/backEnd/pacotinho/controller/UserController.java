@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService service;
 
-    @PostMapping
+    @PostMapping(path = "/newExternalUser", produces = "application/json", consumes = "application/json")
     public void saveUser(@RequestBody UserDTO user){
         try{
             this.service.saveUser(user);
