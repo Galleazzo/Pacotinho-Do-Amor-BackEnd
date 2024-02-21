@@ -5,6 +5,7 @@ import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "animals")
 public class Animals {
@@ -34,6 +35,9 @@ public class Animals {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "registrationDate")
+    private Date registrationDate;
 
     public Long getId() {
         return id;
@@ -97,5 +101,13 @@ public class Animals {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }
