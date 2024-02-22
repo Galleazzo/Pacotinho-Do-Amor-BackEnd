@@ -1,5 +1,9 @@
 package br.com.backEnd.pacotinho.model.dto;
 
+import br.com.backEnd.pacotinho.type.AnimalAge;
+import br.com.backEnd.pacotinho.type.AnimalSize;
+import br.com.backEnd.pacotinho.type.AnimalType;
+
 import java.util.Date;
 
 public class AnimalsDTO {
@@ -7,10 +11,10 @@ public class AnimalsDTO {
     private Long id;
     private String name;
     private String instagramURL;
-    private Long animalAge;
-    private Long animalType;
+    private AnimalAge animalAge;
+    private AnimalType animalType;
     private String race;
-    private Long size;
+    private AnimalSize size;
     private String description;
     private Date registrationDate;
 
@@ -40,19 +44,19 @@ public class AnimalsDTO {
         this.instagramURL = instagramURL;
     }
 
-    public Long getAnimalAge() {
+    public AnimalAge getAnimalAge() {
         return animalAge;
     }
 
-    public void setAnimalAge(Long animalAge) {
+    public void setAnimalAge(AnimalAge animalAge) {
         this.animalAge = animalAge;
     }
 
-    public Long getAnimalType() {
+    public AnimalType getAnimalType() {
         return animalType;
     }
 
-    public void setAnimalType(Long animalType) {
+    public void setAnimalType(AnimalType animalType) {
         this.animalType = animalType;
     }
 
@@ -64,11 +68,11 @@ public class AnimalsDTO {
         this.race = race;
     }
 
-    public Long getSize() {
+    public AnimalSize getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public void setSize(AnimalSize size) {
         this.size = size;
     }
 

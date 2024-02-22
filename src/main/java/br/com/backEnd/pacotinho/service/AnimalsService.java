@@ -7,7 +7,12 @@ import br.com.backEnd.pacotinho.type.AnimalAge;
 import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -21,9 +26,25 @@ public class AnimalsService {
     @Autowired
     private ModelMapper modelMapper;
 
+    public Page<AnimalsDTO> getByCriteria(String name, Integer page, Integer pageSize, String sort, String order) {
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.fromString(order), sort);
+        return this.modelMapper.map(this.animalsRepository.getByCriteria(name, pageable), new TypeToken<Page<Animals>>() {}.getType());
+    }
+
     public AnimalsDTO getById(Long id) throws Exception {
         Animals animal = this.animalsRepository.getById(id);
-        return this.modelMapper.map(animal, AnimalsDTO.class);
+        AnimalsDTO animalsDTO = new AnimalsDTO();
+        animalsDTO.setId(animal.getId());
+        animalsDTO.setName(animal.getName());
+        animalsDTO.setInstagramURL(animal.getInstagramURL());
+        animalsDTO.setAnimalAge(animal.getAnimalAge());
+        animalsDTO.setAnimalType(animal.getAnimalType());
+        animalsDTO.setRace(animal.getRace());
+        animalsDTO.setSize(animal.getSize());
+        animalsDTO.setDescription(animal.getDescription());
+        animalsDTO.setRegistrationDate(animal.getRegistrationDate());
+
+        return animalsDTO;
     }
 
     public AnimalsDTO save(AnimalsDTO animalsDTO) {
@@ -31,18 +52,18 @@ public class AnimalsService {
         Date registrationDate = new Date();
 
         if(animalsDTO.getId() != null) {
-            animals.setId(animals.getId());
+            animals = this.animalsRepository.getById(animalsDTO.getId());
         }
-        if(animalsDTO.getRegistrationDate() == null) {
+        if(animalsDTO.getId() == null) {
             animals.setRegistrationDate(registrationDate);
         }
 
         animals.setName(animalsDTO.getName());
         animals.setInstagramURL(animalsDTO.getInstagramURL());
-        animals.setAnimalAge(AnimalAge.getByValue(animalsDTO.getAnimalAge()));
-        animals.setAnimalType(AnimalType.getByValue(animalsDTO.getAnimalType()));
+        animals.setAnimalAge(animalsDTO.getAnimalAge());
+        animals.setAnimalType(animalsDTO.getAnimalType());
         animals.setRace(animalsDTO.getRace());
-        animals.setSize(AnimalSize.getByValue(animalsDTO.getSize()));
+        animals.setSize(animalsDTO.getSize());
         animals.setDescription(animalsDTO.getDescription());
 
         this.animalsRepository.save(animals);
