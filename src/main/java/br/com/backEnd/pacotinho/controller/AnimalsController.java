@@ -31,6 +31,9 @@ public class AnimalsController {
         return this.animalsService.getByCriteria(name, page, pageSize, sort, order);
     }
 
-
+    @DeleteMapping
+    public void deleteById(@RequestParam Long id) throws Exception {
+        this.animalsService.deleteAnimal(id);
+    }
 
 }

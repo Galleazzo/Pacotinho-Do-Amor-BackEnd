@@ -69,4 +69,12 @@ public class AnimalsService {
         this.animalsRepository.save(animals);
         return animalsDTO;
     }
+
+    public void deleteAnimal(Long id) throws Exception {
+        try{
+            this.animalsRepository.deleteById(id);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
 }
