@@ -39,6 +39,9 @@ public class Animals {
     @Column(name = "registrationDate")
     private Date registrationDate;
 
+    @Column(name = "priority")
+    private Long priority;
+
     public Long getId() {
         return id;
     }
@@ -109,5 +112,13 @@ public class Animals {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Long getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Long priority) {
+        this.priority = priority;
     }
 }

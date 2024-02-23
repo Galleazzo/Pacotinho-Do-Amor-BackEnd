@@ -17,6 +17,7 @@ public class AnimalsDTO {
     private AnimalSize size;
     private String description;
     private Date registrationDate;
+    private Long priority;
 
     public AnimalsDTO(){}
 
@@ -90,5 +91,13 @@ public class AnimalsDTO {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Long getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Long priority) {
+        this.priority = priority;
     }
 }
