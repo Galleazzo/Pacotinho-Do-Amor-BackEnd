@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/animals")
 public class AnimalsController {
@@ -34,6 +36,11 @@ public class AnimalsController {
     @DeleteMapping
     public void deleteById(@RequestParam Long id) throws Exception {
         this.animalsService.deleteAnimal(id);
+    }
+
+    @GetMapping(path = "/getAll")
+    public List<AnimalsDTO> getAllAnimals(){
+        return this.animalsService.getAll();
     }
 
 }

@@ -15,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AnimalsService {
@@ -77,4 +79,11 @@ public class AnimalsService {
             e.getMessage();
         }
     }
+
+    public List<AnimalsDTO> getAll() {
+        List<Animals> animalsList = this.animalsRepository.findAll();
+        Type listType = new TypeToken<List<AnimalsDTO>>() {}.getType();
+        return this.modelMapper.map(animalsList, listType);
+    }
+
 }
