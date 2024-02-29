@@ -45,6 +45,7 @@ public class AnimalsService {
         animalsDTO.setSize(animal.getSize());
         animalsDTO.setDescription(animal.getDescription());
         animalsDTO.setRegistrationDate(animal.getRegistrationDate());
+        animalsDTO.setPriority(animal.getPriority());
 
         return animalsDTO;
     }
@@ -67,6 +68,7 @@ public class AnimalsService {
         animals.setRace(animalsDTO.getRace());
         animals.setSize(animalsDTO.getSize());
         animals.setDescription(animalsDTO.getDescription());
+        animals.setPriority(animalsDTO.getPriority());
 
         this.animalsRepository.save(animals);
         return animalsDTO;
