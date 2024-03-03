@@ -18,6 +18,7 @@ public class AnimalsDTO {
     private String description;
     private Date registrationDate;
     private Long priority;
+    private byte[] animalImage;
 
     public AnimalsDTO(){}
 
@@ -99,5 +100,13 @@ public class AnimalsDTO {
 
     public void setPriority(Long priority) {
         this.priority = priority;
+    }
+
+    public byte[] getAnimalImage() {
+        return animalImage;
+    }
+
+    public void setAnimalImage(byte[] animalImage) {
+        this.animalImage = animalImage;
     }
 }

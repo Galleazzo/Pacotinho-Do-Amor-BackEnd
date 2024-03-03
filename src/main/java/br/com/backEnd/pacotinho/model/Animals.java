@@ -42,6 +42,10 @@ public class Animals {
     @Column(name = "priority")
     private Long priority;
 
+    @Lob
+    @Column(name = "animalImage", columnDefinition="BLOB")
+    private byte[] animalImage;
+
     public Long getId() {
         return id;
     }
@@ -120,5 +124,13 @@ public class Animals {
 
     public void setPriority(Long priority) {
         this.priority = priority;
+    }
+
+    public byte[] getAnimalImage() {
+        return animalImage;
+    }
+
+    public void setAnimalImage(byte[] animalImage) {
+        this.animalImage = animalImage;
     }
 }
