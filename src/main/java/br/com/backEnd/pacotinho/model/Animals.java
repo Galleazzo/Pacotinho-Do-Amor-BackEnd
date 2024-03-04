@@ -43,7 +43,7 @@ public class Animals {
     private Long priority;
 
     @Lob
-    @Column(name = "animalImage", columnDefinition="BLOB")
+    @Column(name = "animal_image", columnDefinition="BLOB")
     private byte[] animalImage;
 
     public Long getId() {
