@@ -72,6 +72,8 @@ public class AnimalsService {
         animals.setPriority(animalsDTO.getPriority());
         animals.setAnimalImage(animals.getAnimalImage());
 
+        //TODO FAZER SALVAMENTO DE IMAGEM DE ANIMAL VIA BASE 64
+
         this.animalsRepository.save(animals);
         return animalsDTO;
     }
