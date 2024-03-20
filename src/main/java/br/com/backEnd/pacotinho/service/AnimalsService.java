@@ -70,7 +70,7 @@ public class AnimalsService {
         animals.setSize(animalsDTO.getSize());
         animals.setDescription(animalsDTO.getDescription());
         animals.setPriority(animalsDTO.getPriority());
-        animals.setAnimalImage(animals.getAnimalImage());
+        animals.setAnimalImage(animalsDTO.getAnimalImage());
 
         //TODO FAZER SALVAMENTO DE IMAGEM DE ANIMAL VIA BASE 64
 

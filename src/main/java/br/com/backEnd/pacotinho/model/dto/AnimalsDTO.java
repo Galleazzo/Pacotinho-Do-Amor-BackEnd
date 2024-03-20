@@ -1,10 +1,12 @@
 package br.com.backEnd.pacotinho.model.dto;
 
+import br.com.backEnd.pacotinho.model.ImageAnimalModel;
 import br.com.backEnd.pacotinho.type.AnimalAge;
 import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
 
 import java.util.Date;
+import java.util.Set;
 
 public class AnimalsDTO {
 
@@ -18,7 +20,7 @@ public class AnimalsDTO {
     private String description;
     private Date registrationDate;
     private Long priority;
-    private byte[] animalImage;
+    private Set<ImageAnimalModel> animalImage;
 
     public AnimalsDTO(){}
 
@@ -102,11 +104,11 @@ public class AnimalsDTO {
         this.priority = priority;
     }
 
-    public byte[] getAnimalImage() {
+    public Set<ImageAnimalModel> getAnimalImage() {
         return animalImage;
     }
 
-    public void setAnimalImage(byte[] animalImage) {
+    public void setAnimalImage(Set<ImageAnimalModel> animalImage) {
         this.animalImage = animalImage;
     }
 }

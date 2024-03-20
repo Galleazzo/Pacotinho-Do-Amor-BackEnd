@@ -6,6 +6,7 @@ import br.com.backEnd.pacotinho.type.AnimalType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "animals")
 public class Animals {
@@ -42,9 +43,15 @@ public class Animals {
     @Column(name = "priority")
     private Long priority;
 
-    @Lob
-    @Column(name = "animal_image", columnDefinition="BLOB")
-    private byte[] animalImage;
+    @ManyToMany(fetch = FetchType.EAGER, cascade =CascadeType.ALL)
+    @JoinTable(name = "animal_image",
+            joinColumns = {
+                    @JoinColumn(name = "animal_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "image_id")
+            })
+    private Set<ImageAnimalModel> animalImage;
 
     public Long getId() {
         return id;
@@ -126,11 +133,11 @@ public class Animals {
         this.priority = priority;
     }
 
-    public byte[] getAnimalImage() {
+    public Set<ImageAnimalModel> getAnimalImage() {
         return animalImage;
     }
 
-    public void setAnimalImage(byte[] animalImage) {
+    public void setAnimalImage(Set<ImageAnimalModel> animalImage) {
         this.animalImage = animalImage;
     }
 }
