@@ -53,6 +53,9 @@ public class Animals {
             })
     private Set<ImageAnimalModel> animalImage;
 
+    @Column(name = "active")
+    private Boolean active;
+
     public Long getId() {
         return id;
     }
@@ -139,5 +142,13 @@ public class Animals {
 
     public void setAnimalImage(Set<ImageAnimalModel> animalImage) {
         this.animalImage = animalImage;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

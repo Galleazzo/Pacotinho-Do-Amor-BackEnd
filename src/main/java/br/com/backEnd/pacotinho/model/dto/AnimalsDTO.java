@@ -21,6 +21,7 @@ public class AnimalsDTO {
     private Date registrationDate;
     private Long priority;
     private Set<ImageAnimalModel> animalImage;
+    private Boolean active;
 
     public AnimalsDTO(){}
 
@@ -110,5 +111,13 @@ public class AnimalsDTO {
 
     public void setAnimalImage(Set<ImageAnimalModel> animalImage) {
         this.animalImage = animalImage;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
