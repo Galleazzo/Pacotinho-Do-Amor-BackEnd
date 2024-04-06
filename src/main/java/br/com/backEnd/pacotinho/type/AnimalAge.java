@@ -25,4 +25,5 @@ public enum AnimalAge {
         }
         throw new IllegalArgumentException("no datatype with " + i + " exists");
     }
+    
 }
