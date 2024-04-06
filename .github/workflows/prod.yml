@@ -21,6 +21,6 @@ jobs:
       - name: Login Docker Hub
         run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run: docker build -t paulogalleazzo/Pacotinho-do-amor-BackEnd .
+        run: docker build -t paulogalleazzo/pacotinho-do-amor-backend .
       - name: Push image docker
-        run: docker push paulogalleazzo/Pacotinho-do-amor-BackEnd
+        run: docker push paulogalleazzo/pacotinho-do-amor-backeend
