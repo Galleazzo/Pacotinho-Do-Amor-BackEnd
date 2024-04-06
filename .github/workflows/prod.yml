@@ -19,7 +19,7 @@ jobs:
       - name: Build project
         run: mvn clean install -DskipTests
       - name: Login Docker Hub
-        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u paulogalleazzo -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
         run: docker build -t paulogalleazzo/Pacotinho-do-amor-BackEnd .
       - name: Push image docker
