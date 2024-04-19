@@ -24,3 +24,12 @@ jobs:
         run: docker build -t paulogalleazzo/pacotinho_do_amor_backend .
       - name: Push image docker
         run: docker push paulogalleazzo/pacotinho_do_amor_backend
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull img from docker hub
+        run: docker pull paulogalleazzo/pacotinho_do_amor_backend:latest
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 --name pacotinho_do_amor_backend paulogalleazzo/pacotinho_do_amor_backend
