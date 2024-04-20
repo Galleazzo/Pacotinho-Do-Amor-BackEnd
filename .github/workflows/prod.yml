@@ -31,5 +31,7 @@ jobs:
     steps:
       - name: Pull img from docker hub
         run: docker pull paulogalleazzo/pacotinho_do_amor_backend:latest
+      - name: Remove docker container antigo
+        run: docker rm -f pacotinho_do_amor_backend
       - name: Run docker container
         run: docker run -d -p 8080:8080 -e AWS_DATABASE_URL=${{secrets.AWS_DATABASE_URL}} -e AWS_DATABASE_PASSWORD='${{secrets.AWS_DATABASE_PASSWORD}}' -e AWS_DATABASE_USER=${{secrets.AWS_DATABASE_USER}} --name pacotinho_do_amor_backend paulogalleazzo/pacotinho_do_amor_backend
