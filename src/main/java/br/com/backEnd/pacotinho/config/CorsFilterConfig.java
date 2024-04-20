@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 public class CorsFilterConfig {
 
-    public static final List<String> allowedOrigins = Arrays.asList("http://localhost:4200");
+    public static final List<String> allowedOrigins = Arrays.asList("http://localhost:4200", "https://pacotinho-do-amor-dashboards.vercel.app");
 
     @Bean
     public FilterRegistrationBean<CorsFilter> initCorsFilter() {
