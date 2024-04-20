@@ -22,8 +22,7 @@ public class AnimalsController {
 
     @Autowired
     private AnimalsService animalsService;
-
-
+    
     @GetMapping
     public AnimalsDTO getById(@RequestParam Long id) throws Exception {
         return this.animalsService.getById(id);
