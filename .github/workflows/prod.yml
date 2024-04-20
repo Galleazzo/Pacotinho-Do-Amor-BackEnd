@@ -32,4 +32,4 @@ jobs:
       - name: Pull img from docker hub
         run: docker pull paulogalleazzo/pacotinho_do_amor_backend:latest
       - name: Run docker container
-        run: docker run -d -p 8080:8080 -e AWS_DATABASE_URL=${{secrets.AWS_DATABASE_URL}} -e AWS_DATABASE_USER=${{secrets.AWS_DATABASE_USER}} -e AWS_DATABASE_PASSWORD='${{secrets.AWS_DATABASE_PASSWORD}}' --name pacotinho_do_amor_backend paulogalleazzo/pacotinho_do_amor_backend
+        run: docker run -d -p 8080:8080 AWS_DATABASE_URL=${{secrets.AWS_DATABASE_URL}} -e AWS_DATABASE_USER=${{secrets.AWS_DATABASE_USER}} -e AWS_DATABASE_PASSWORD="${{secrets.AWS_DATABASE_PASSWORD}}" --name pacotinho_do_amor_backend paulogalleazzo/pacotinho_do_amor_backend
