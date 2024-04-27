@@ -51,7 +51,6 @@ public class AnimalsController {
     }
 
     private Set<ImageAnimalModel> uplodImage(MultipartFile[] multipartFiles) throws IOException {
-
         Set<ImageAnimalModel> imageModels = new HashSet<>();
 
         for(MultipartFile file: multipartFiles) {
