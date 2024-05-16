@@ -2,6 +2,7 @@ package br.com.backEnd.pacotinho.model.dto;
 
 import br.com.backEnd.pacotinho.model.ImageAnimalModel;
 import br.com.backEnd.pacotinho.type.AnimalAge;
+import br.com.backEnd.pacotinho.type.AnimalSex;
 import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
 
@@ -15,6 +16,7 @@ public class AnimalsDTO {
     private String instagramURL;
     private AnimalAge animalAge;
     private AnimalType animalType;
+    private AnimalSex animalSex;
     private String race;
     private AnimalSize size;
     private String description;
@@ -119,5 +121,13 @@ public class AnimalsDTO {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public AnimalSex getAnimalSex() {
+        return animalSex;
+    }
+
+    public void setAnimalSex(AnimalSex animalSex) {
+        this.animalSex = animalSex;
     }
 }

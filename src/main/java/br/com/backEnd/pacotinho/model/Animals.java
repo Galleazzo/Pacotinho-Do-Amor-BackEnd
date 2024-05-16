@@ -1,6 +1,7 @@
 package br.com.backEnd.pacotinho.model;
 
 import br.com.backEnd.pacotinho.type.AnimalAge;
+import br.com.backEnd.pacotinho.type.AnimalSex;
 import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
 
@@ -27,6 +28,9 @@ public class Animals {
 
     @Column(name = "animalType")
     private AnimalType animalType;
+
+    @Column(name = "animalSex")
+    private AnimalSex animalSex;
 
     @Column(name = "race")
     private String race;
@@ -150,5 +154,13 @@ public class Animals {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public AnimalSex getAnimalSex() {
+        return animalSex;
+    }
+
+    public void setAnimalSex(AnimalSex animalSex) {
+        this.animalSex = animalSex;
     }
 }
