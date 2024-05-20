@@ -30,7 +30,7 @@ public class AnimalsController {
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public AnimalsDTO save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart("imageFile") MultipartFile[] file) throws Exception {
-        Set<ImageAnimalModel> images = uplodImage(file);
+        Set<ImageAnimalModel> images = this.animalsService.uplodImage(file);
         animalsDTO.setAnimalImage(images);
         return this.animalsService.save(animalsDTO);
     }
@@ -48,19 +48,6 @@ public class AnimalsController {
     @GetMapping(path = "/getAll")
     public List<AnimalsDTO> getAllAnimals(){
         return this.animalsService.getAll();
-    }
-
-    private Set<ImageAnimalModel> uplodImage(MultipartFile[] multipartFiles) throws IOException {
-        Set<ImageAnimalModel> imageModels = new HashSet<>();
-
-        for(MultipartFile file: multipartFiles) {
-            ImageAnimalModel imageModel = new ImageAnimalModel(
-                    file.getOriginalFilename(),
-                    file.getContentType(),
-                    file.getBytes());
-            imageModels.add(imageModel);
-        }
-        return imageModels;
     }
 
 }

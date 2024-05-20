@@ -1,6 +1,7 @@
 package br.com.backEnd.pacotinho.service;
 
 import br.com.backEnd.pacotinho.model.Animals;
+import br.com.backEnd.pacotinho.model.ImageAnimalModel;
 import br.com.backEnd.pacotinho.model.dto.AnimalsDTO;
 import br.com.backEnd.pacotinho.repository.AnimalsRepository;
 import br.com.backEnd.pacotinho.type.AnimalAge;
@@ -14,10 +15,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AnimalsService {
@@ -47,6 +52,7 @@ public class AnimalsService {
         animalsDTO.setRegistrationDate(animal.getRegistrationDate());
         animalsDTO.setPriority(animal.getPriority());
         animalsDTO.setAnimalImage(animal.getAnimalImage());
+        animalsDTO.setAnimalSex(animal.getAnimalSex());
 
         return animalsDTO;
     }
@@ -91,4 +97,16 @@ public class AnimalsService {
         return this.modelMapper.map(animalsList, listType);
     }
 
+    public Set<ImageAnimalModel> uplodImage(MultipartFile[] multipartFiles) throws IOException {
+        Set<ImageAnimalModel> imageModels = new HashSet<>();
+
+        for(MultipartFile file: multipartFiles) {
+            ImageAnimalModel imageModel = new ImageAnimalModel(
+                    file.getOriginalFilename(),
+                    file.getContentType(),
+                    file.getBytes());
+            imageModels.add(imageModel);
+        }
+        return imageModels;
+    }
 }
