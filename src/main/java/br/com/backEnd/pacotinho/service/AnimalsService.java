@@ -109,4 +109,14 @@ public class AnimalsService {
         }
         return imageModels;
     }
+
+    public void changeActive(Long id) {
+        Animals animal = this.animalsRepository.getById(id);
+        if (animal.getActive())
+            animal.setActive(false);
+
+        if (!animal.getActive())
+            animal.setActive(true);
+
+    }
 }
