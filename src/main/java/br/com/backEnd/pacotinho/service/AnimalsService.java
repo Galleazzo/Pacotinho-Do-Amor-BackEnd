@@ -53,6 +53,7 @@ public class AnimalsService {
         animalsDTO.setPriority(animal.getPriority());
         animalsDTO.setAnimalImage(animal.getAnimalImage());
         animalsDTO.setAnimalSex(animal.getAnimalSex());
+        animalsDTO.setActive(animal.getActive());
 
         return animalsDTO;
     }
@@ -78,6 +79,7 @@ public class AnimalsService {
         animals.setPriority(animalsDTO.getPriority());
         animals.setAnimalImage(animalsDTO.getAnimalImage());
         animals.setAnimalSex(animalsDTO.getAnimalSex());
+        animals.setActive(true);
 
         this.animalsRepository.save(animals);
         return animalsDTO;
@@ -112,11 +114,8 @@ public class AnimalsService {
 
     public void changeActive(Long id) {
         Animals animal = this.animalsRepository.getById(id);
-        if (animal.getActive())
-            animal.setActive(false);
-
-        if (!animal.getActive())
-            animal.setActive(true);
-
+        animal.setActive(!animal.getActive());
+        this.animalsRepository.save(animal);
     }
+
 }
