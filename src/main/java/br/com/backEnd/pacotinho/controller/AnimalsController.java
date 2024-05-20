@@ -29,8 +29,13 @@ public class AnimalsController {
     }
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public AnimalsDTO save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart("imageFile") MultipartFile[] file) throws Exception {
-        Set<ImageAnimalModel> images = this.animalsService.uplodImage(file);
+    public AnimalsDTO save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart(value = "imageFile", required = false) MultipartFile[] file) throws Exception {
+        Set<ImageAnimalModel> images = new HashSet<>();
+
+        if (file != null && file.length > 0) {
+            images = this.animalsService.uplodImage(file);
+        }
+
         animalsDTO.setAnimalImage(images);
         return this.animalsService.save(animalsDTO);
     }
