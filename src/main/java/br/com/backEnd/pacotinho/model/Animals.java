@@ -60,6 +60,9 @@ public class Animals {
     @Column(name = "active")
     private Boolean active;
 
+    @Column(name = "adoptionDate")
+    private Date adoptionDate;
+
     public Long getId() {
         return id;
     }
@@ -162,5 +165,13 @@ public class Animals {
 
     public void setAnimalSex(AnimalSex animalSex) {
         this.animalSex = animalSex;
+    }
+
+    public Date getAdoptionDate() {
+        return adoptionDate;
+    }
+
+    public void setAdoptionDate(Date adoptionDate) {
+        this.adoptionDate = adoptionDate;
     }
 }

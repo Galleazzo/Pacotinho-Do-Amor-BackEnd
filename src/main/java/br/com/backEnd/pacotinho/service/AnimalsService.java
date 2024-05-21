@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -79,6 +81,7 @@ public class AnimalsService {
         animals.setPriority(animalsDTO.getPriority());
         animals.setAnimalImage(animalsDTO.getAnimalImage());
         animals.setAnimalSex(animalsDTO.getAnimalSex());
+        animals.setAdoptionDate(null);
         animals.setActive(true);
 
         this.animalsRepository.save(animals);
@@ -115,6 +118,13 @@ public class AnimalsService {
     public void changeActive(Long id) {
         Animals animal = this.animalsRepository.getById(id);
         animal.setActive(!animal.getActive());
+        if (animal.getActive() == false) {
+            LocalDateTime now = LocalDateTime.now();
+            Date date = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+            animal.setAdoptionDate(date);
+        } else {
+            animal.setAdoptionDate(null);
+        }
         this.animalsRepository.save(animal);
     }
 
