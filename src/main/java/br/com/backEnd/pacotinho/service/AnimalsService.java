@@ -115,13 +115,16 @@ public class AnimalsService {
         return imageModels;
     }
 
-    public void changeActive(Long id) {
+    public void changeActive(Long id, Date adoptionDate) {
         Animals animal = this.animalsRepository.getById(id);
         animal.setActive(!animal.getActive());
+
         if (animal.getActive() == false) {
             LocalDateTime now = LocalDateTime.now();
             Date date = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
             animal.setAdoptionDate(date);
+
+            //animal.setAdoptionDate(adoptionDate);  *implementação para usuario escolher a data de adoçao
         } else {
             animal.setAdoptionDate(null);
         }

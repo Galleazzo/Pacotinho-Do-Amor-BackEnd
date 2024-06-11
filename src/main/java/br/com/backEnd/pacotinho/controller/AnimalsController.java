@@ -57,7 +57,7 @@ public class AnimalsController {
 
     @PostMapping(path = "/changeActive")
     public void changeActive(@RequestParam Long id) {
-        this.animalsService.changeActive(id);
+        this.animalsService.changeActive(id, null);
     }
 
 }
