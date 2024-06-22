@@ -24,6 +24,7 @@ public class AnimalsDTO {
     private Long priority;
     private Set<ImageAnimalModel> animalImage;
     private Boolean active;
+    private Date adoptionDate;
 
     public AnimalsDTO(){}
 
@@ -129,5 +130,13 @@ public class AnimalsDTO {
 
     public void setAnimalSex(AnimalSex animalSex) {
         this.animalSex = animalSex;
+    }
+
+    public Date getAdoptionDate() {
+        return adoptionDate;
+    }
+
+    public void setAdoptionDate(Date adoptionDate) {
+        this.adoptionDate = adoptionDate;
     }
 }

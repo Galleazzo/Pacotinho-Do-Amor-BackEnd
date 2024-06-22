@@ -56,6 +56,7 @@ public class AnimalsService {
         animalsDTO.setAnimalImage(animal.getAnimalImage());
         animalsDTO.setAnimalSex(animal.getAnimalSex());
         animalsDTO.setActive(animal.getActive());
+        animalsDTO.setAdoptionDate(animal.getAdoptionDate());
 
         return animalsDTO;
     }
@@ -124,7 +125,7 @@ public class AnimalsService {
             Date date = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
             animal.setAdoptionDate(date);
 
-            //animal.setAdoptionDate(adoptionDate);  *implementação para usuario escolher a data de adoçao
+            animal.setAdoptionDate(adoptionDate);
         } else {
             animal.setAdoptionDate(null);
         }
