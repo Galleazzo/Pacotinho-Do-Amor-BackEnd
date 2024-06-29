@@ -50,7 +50,7 @@ public class TokenService {
         }
     }
 
-    public boolean cheaakValidToken(String tokenJWT){
+    public boolean cheakValidToken(String tokenJWT){
         try {
             Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
             DecodedJWT jwt = JWT.require(algorithm)

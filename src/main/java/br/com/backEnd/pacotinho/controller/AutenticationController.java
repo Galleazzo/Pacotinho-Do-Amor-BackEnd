@@ -35,10 +35,10 @@ public class AutenticationController {
     @GetMapping("/checkToken")
     public ResponseEntity<Boolean> checkTokenValidity(@RequestParam("token") String token) {
         try {
-            boolean isValid = tokenService.cheaakValidToken(token);
+            boolean isValid = tokenService.cheakValidToken(token);
             return ResponseEntity.ok(isValid);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
         }
     }
 }

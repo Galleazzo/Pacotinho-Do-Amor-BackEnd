@@ -43,19 +43,10 @@ public class CorsFilterConfig {
         tokenValidConfig.setAllowedOrigins(allowedOrigins);
         tokenValid.registerCorsConfiguration("/auth/tokenValid", authConfig);
 
-        //Configuração para API de criação de novo usuario
-        UrlBasedCorsConfigurationSource newUser = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration newUserConfig = new CorsConfiguration();
-        newUserConfig.setAllowCredentials(true);
-        newUserConfig.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        newUserConfig.addAllowedMethod("*");
-        newUserConfig.setAllowedOrigins(allowedOrigins);
-        newUser.registerCorsConfiguration("/user/newExternalUser", authConfig);
 
         source.registerCorsConfiguration("/**", config);
         source.registerCorsConfiguration("/auth/login", authConfig);
         source.registerCorsConfiguration("/auth/tokenValid", tokenValidConfig);
-        source.registerCorsConfiguration("/user/newExternalUser", newUserConfig);
 
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);

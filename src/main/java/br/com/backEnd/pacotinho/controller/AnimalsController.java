@@ -1,5 +1,6 @@
 package br.com.backEnd.pacotinho.controller;
 
+import br.com.backEnd.pacotinho.exception.AnimalNotFoundException;
 import br.com.backEnd.pacotinho.model.Animals;
 import br.com.backEnd.pacotinho.model.ImageAnimalModel;
 import br.com.backEnd.pacotinho.model.dto.AnimalsDTO;
@@ -7,14 +8,16 @@ import br.com.backEnd.pacotinho.service.AnimalsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
 
-@RestController
+@RestController(value = "APIs to get, post, put and delete animals")
 @RequestMapping("/animals")
 public class AnimalsController {
 
@@ -22,12 +25,19 @@ public class AnimalsController {
     private AnimalsService animalsService;
 
     @GetMapping
-    public AnimalsDTO getById(@RequestParam Long id) throws Exception {
-        return this.animalsService.getById(id);
+    public ResponseEntity<AnimalsDTO> getById(@RequestParam Long id) {
+        try {
+            AnimalsDTO animalDTO = animalsService.getById(id);
+            return new ResponseEntity<>(animalDTO, HttpStatus.OK);
+        } catch (AnimalNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public AnimalsDTO save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart(value = "imageFile", required = false) MultipartFile[] file) throws Exception {
+    public ResponseEntity<AnimalsDTO> save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart(value = "imageFile", required = false) MultipartFile[] file) throws Exception {
         Set<ImageAnimalModel> images = new HashSet<>();
 
         if (file != null && file.length > 0) {
@@ -35,22 +45,23 @@ public class AnimalsController {
         }
 
         animalsDTO.setAnimalImage(images);
-        return this.animalsService.save(animalsDTO);
+        return new ResponseEntity<>(this.animalsService.save(animalsDTO), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/getByCriteria")
-    public Page<AnimalsDTO> getByCriteria(@RequestParam String name, @RequestParam Integer page, @RequestParam Integer pageSize, @RequestParam String sort, @RequestParam String order){
-        return this.animalsService.getByCriteria(name, page, pageSize, sort, order);
+    public ResponseEntity<Page<AnimalsDTO>> getByCriteria(@RequestParam String name, @RequestParam Integer page, @RequestParam Integer pageSize, @RequestParam String sort, @RequestParam String order){
+        return new ResponseEntity<>(this.animalsService.getByCriteria(name, page, pageSize, sort, order), HttpStatus.OK);
     }
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@RequestParam Long id) throws Exception {
-        this.animalsService.deleteAnimal(id);
+        animalsService.deleteAnimal(id);
     }
 
     @GetMapping(path = "/getAll")
-    public List<AnimalsDTO> getAllAnimals(){
-        return this.animalsService.getAll();
+    public ResponseEntity<List<AnimalsDTO>> getAllAnimals(){
+        return new ResponseEntity<>(this.animalsService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/changeActive")
