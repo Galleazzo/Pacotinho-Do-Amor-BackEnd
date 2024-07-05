@@ -63,6 +63,9 @@ public class Animals {
     @Column(name = "adoptionDate")
     private Date adoptionDate;
 
+    @ManyToMany(mappedBy = "animals")
+    private Set<AdopterPerson> adopterPeople;
+
     public Long getId() {
         return id;
     }
@@ -173,5 +176,13 @@ public class Animals {
 
     public void setAdoptionDate(Date adoptionDate) {
         this.adoptionDate = adoptionDate;
+    }
+
+    public Set<AdopterPerson> getAdopterPeople() {
+        return adopterPeople;
+    }
+
+    public void setAdopterPeople(Set<AdopterPerson> adopterPeople) {
+        this.adopterPeople = adopterPeople;
     }
 }
