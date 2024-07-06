@@ -7,6 +7,7 @@ import br.com.backEnd.pacotinho.repository.AnimalsRepository;
 import br.com.backEnd.pacotinho.type.AnimalAge;
 import br.com.backEnd.pacotinho.type.AnimalSize;
 import br.com.backEnd.pacotinho.type.AnimalType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
@@ -25,6 +27,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Service
 public class AnimalsService {
@@ -42,23 +45,7 @@ public class AnimalsService {
 
     public AnimalsDTO getById(Long id) throws Exception {
         Animals animal = this.animalsRepository.getById(id);
-        AnimalsDTO animalsDTO = new AnimalsDTO();
-        animalsDTO.setId(animal.getId());
-        animalsDTO.setName(animal.getName());
-        animalsDTO.setInstagramURL(animal.getInstagramURL());
-        animalsDTO.setAnimalAge(animal.getAnimalAge());
-        animalsDTO.setAnimalType(animal.getAnimalType());
-        animalsDTO.setRace(animal.getRace());
-        animalsDTO.setSize(animal.getSize());
-        animalsDTO.setDescription(animal.getDescription());
-        animalsDTO.setRegistrationDate(animal.getRegistrationDate());
-        animalsDTO.setPriority(animal.getPriority());
-        animalsDTO.setAnimalImage(animal.getAnimalImage());
-        animalsDTO.setAnimalSex(animal.getAnimalSex());
-        animalsDTO.setActive(animal.getActive());
-        animalsDTO.setAdoptionDate(animal.getAdoptionDate());
-
-        return animalsDTO;
+        return this.modelMapper.map(animal, AnimalsDTO.class);
     }
 
     public AnimalsDTO save(AnimalsDTO animalsDTO) {
@@ -71,29 +58,16 @@ public class AnimalsService {
         if(animalsDTO.getId() == null) {
             animals.setRegistrationDate(registrationDate);
         }
+        this.convertDtoToObject(animalsDTO, animals);
 
-        animals.setName(animalsDTO.getName());
-        animals.setInstagramURL(animalsDTO.getInstagramURL());
-        animals.setAnimalAge(animalsDTO.getAnimalAge());
-        animals.setAnimalType(animalsDTO.getAnimalType());
-        animals.setRace(animalsDTO.getRace());
-        animals.setSize(animalsDTO.getSize());
-        animals.setDescription(animalsDTO.getDescription());
-        animals.setPriority(animalsDTO.getPriority());
-        animals.setAnimalImage(animalsDTO.getAnimalImage());
-        animals.setAnimalSex(animalsDTO.getAnimalSex());
-        animals.setAdoptionDate(null);
-        animals.setActive(true);
-
-        this.animalsRepository.save(animals);
-        return animalsDTO;
+        return this.modelMapper.map(this.animalsRepository.save(animals), AnimalsDTO.class);
     }
 
     public void deleteAnimal(Long id) throws Exception {
-        try{
-            this.animalsRepository.deleteById(id);
+        try {
+            animalsRepository.deleteById(id);
         } catch (Exception e) {
-            e.getMessage();
+            throw new Exception("Erro ao deletar o animal: " + e.getMessage());
         }
     }
 
@@ -130,6 +104,23 @@ public class AnimalsService {
             animal.setAdoptionDate(null);
         }
         this.animalsRepository.save(animal);
+    }
+
+    private Animals convertDtoToObject(AnimalsDTO animalsDTO, Animals animals) {
+        animals.setName(animalsDTO.getName());
+        animals.setInstagramURL(animalsDTO.getInstagramURL());
+        animals.setAnimalAge(animalsDTO.getAnimalAge());
+        animals.setAnimalType(animalsDTO.getAnimalType());
+        animals.setRace(animalsDTO.getRace());
+        animals.setSize(animalsDTO.getSize());
+        animals.setDescription(animalsDTO.getDescription());
+        animals.setPriority(animalsDTO.getPriority());
+        animals.setAnimalImage(animalsDTO.getAnimalImage());
+        animals.setAnimalSex(animalsDTO.getAnimalSex());
+        animals.setAdoptionDate(null);
+        animals.setActive(true);
+
+        return animals;
     }
 
 }

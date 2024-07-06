@@ -30,8 +30,6 @@ public class SecurityConfigurations {
                         .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .antMatchers(HttpMethod.OPTIONS, "/auth/checkToken").permitAll()
                         .antMatchers(HttpMethod.GET, "/auth/checkToken").permitAll()
-                        .antMatchers(HttpMethod.OPTIONS, "/user/newExternalUser").permitAll()
-                        .antMatchers(HttpMethod.POST, "/user/newExternalUser").permitAll()
                         .anyRequest().authenticated()
                         .and().addFilterBefore(this.securityFilter, UsernamePasswordAuthenticationFilter.class)
                         .build();
