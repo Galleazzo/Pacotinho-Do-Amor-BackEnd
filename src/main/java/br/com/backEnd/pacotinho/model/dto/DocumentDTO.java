@@ -5,6 +5,8 @@ public class DocumentDTO {
     private String cpf;
     private String rg;
 
+    public DocumentDTO(){}
+
     public Long getId() {
         return id;
     }

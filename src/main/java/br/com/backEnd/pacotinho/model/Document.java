@@ -15,6 +15,8 @@ public class Document {
     @Column(nullable = false, unique = true)
     private String rg;
 
+    public Document(){}
+
     public Document(String cpf, String rg) {
         this.cpf = cpf;
         this.rg = rg;

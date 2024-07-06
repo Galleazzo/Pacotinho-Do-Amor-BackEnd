@@ -5,7 +5,8 @@ public class ContactDTO {
     private String phone;
     private String email;
 
-    // Getters and Setters
+    public ContactDTO(){}
+
     public Long getId() {
         return id;
     }

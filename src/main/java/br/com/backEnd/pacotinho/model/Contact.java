@@ -16,6 +16,8 @@ public class Contact {
     @Column(nullable = false)
     private String email;
 
+    public Contact(){}
+
     public Contact(String phone, String email) {
         this.phone = phone;
         this.email = email;

@@ -7,6 +7,7 @@ import br.com.backEnd.pacotinho.type.AnimalType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "animals")
@@ -64,7 +65,7 @@ public class Animals {
     private Date adoptionDate;
 
     @ManyToMany(mappedBy = "animals")
-    private Set<AdopterPerson> adopterPeople;
+    private Set<Adopter> adopters;
 
     public Long getId() {
         return id;
@@ -178,11 +179,11 @@ public class Animals {
         this.adoptionDate = adoptionDate;
     }
 
-    public Set<AdopterPerson> getAdopterPeople() {
-        return adopterPeople;
+    public Set<Adopter> getAdopterPeople() {
+        return adopters;
     }
 
-    public void setAdopterPeople(Set<AdopterPerson> adopterPeople) {
-        this.adopterPeople = adopterPeople;
+    public void setAdopterPeople(Set<Adopter> adopterPeople) {
+        this.adopters = adopterPeople;
     }
 }

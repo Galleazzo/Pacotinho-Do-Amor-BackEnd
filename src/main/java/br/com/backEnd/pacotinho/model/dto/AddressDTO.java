@@ -9,7 +9,8 @@ public class AddressDTO {
     private String state;
     private String zipCode;
 
-    // Getters and Setters
+    public AddressDTO(){}
+
     public Long getId() {
         return id;
     }

@@ -27,6 +27,8 @@ public class Address {
     @Column(nullable = false)
     private String zipCode;
 
+    public Address(){}
+
     public Address(String street, String number, String neighborhood, String city, String state, String zipCode) {
         this.street = street;
         this.number = number;
