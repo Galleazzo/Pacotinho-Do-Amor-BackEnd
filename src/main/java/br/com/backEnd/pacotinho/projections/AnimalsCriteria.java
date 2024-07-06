@@ -13,5 +13,6 @@ public interface AnimalsCriteria {
     byte[] getPicByte();
     String getImageName();
     String getImageType();
+    Date getAdoptionDate();
 
 }

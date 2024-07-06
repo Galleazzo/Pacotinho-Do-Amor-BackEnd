@@ -22,6 +22,7 @@ public interface AnimalsRepository extends JpaRepository<Animals, Long> {
             "a.registration_date AS registrationDate, " +
             "a.priority AS priority, " +
             "a.active AS active, " +
+            "a.adoption_date AS adoptionDate, " +
             "iam.pic_byte AS picByte, " +
             "iam.name AS imageName, " +
             "iam.type AS imageType " +
