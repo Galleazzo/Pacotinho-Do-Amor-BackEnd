@@ -23,7 +23,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
 
-            return JWT.create().withIssuer("E-COMMERCE")
+            return JWT.create().withIssuer("PACOTINHO-DO-AMOR")
                     .withSubject(user.getUsername())
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
@@ -34,14 +34,14 @@ public class TokenService {
     }
 
     private Instant expirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-01:00"));
     }
 
     public String checkToken(String tokenJWT){
         try {
             Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
             return JWT.require(algorithm)
-                    .withIssuer("E-COMMERCE")
+                    .withIssuer("PACOTINHO-DO-AMOR")
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
@@ -54,13 +54,11 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
             DecodedJWT jwt = JWT.require(algorithm)
-                    .withIssuer("E-COMMERCE")
+                    .withIssuer("PACOTINHO-DO-AMOR")
                     .build()
                     .verify(tokenJWT);
-            // Verifica se o token está válido
             return true;
         } catch (JWTVerificationException exception){
-            // Se ocorrer uma exceção, o token é inválido ou expirou
             return false;
         }
     }
