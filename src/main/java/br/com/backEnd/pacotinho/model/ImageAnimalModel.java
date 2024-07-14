@@ -16,7 +16,6 @@ public class ImageAnimalModel {
 
     public ImageAnimalModel() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public ImageAnimalModel(String name, String type, byte[] picByte) {

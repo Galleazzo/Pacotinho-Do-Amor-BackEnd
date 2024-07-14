@@ -27,10 +27,7 @@ public class AnimalsController {
     @GetMapping
     public ResponseEntity<AnimalsDTO> getById(@RequestParam Long id) {
         try {
-            AnimalsDTO animalDTO = animalsService.getById(id);
-            return new ResponseEntity<>(animalDTO, HttpStatus.OK);
-        } catch (AnimalNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(animalsService.getById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
