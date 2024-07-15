@@ -39,7 +39,7 @@ public class AnimalControllerTest {
     @Test
     void testGetById() throws Exception {
         AnimalsDTO animalsDTO = new AnimalsDTO();
-        when(this.animalsService.getById(anyLong())).thenReturn(animalsDTO);
+        when(this.animalsService.getById(ArgumentMatchers.anyLong())).thenReturn(animalsDTO);
         ResponseEntity<AnimalsDTO> response = this.animalsController.getById(anyLong());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -50,7 +50,7 @@ public class AnimalControllerTest {
     @Test
     void testGetById_Error() throws Exception {
         Exception exception = new Exception();
-        when(this.animalsService.getById(anyLong())).thenThrow(exception);
+        when(this.animalsService.getById(ArgumentMatchers.anyLong())).thenThrow(exception);
         ResponseEntity<AnimalsDTO> response = this.animalsController.getById(anyLong());
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
@@ -60,7 +60,7 @@ public class AnimalControllerTest {
     @Test
     void testSaveNewAnimal() throws Exception {
         AnimalsDTO animalsDTO = new AnimalsDTO();
-        when(this.animalsService.save(any(AnimalsDTO.class))).thenReturn(animalsDTO);
+        when(this.animalsService.save(ArgumentMatchers.any(AnimalsDTO.class))).thenReturn(animalsDTO);
 
         MultipartFile[] multipartFiles = {};
         ResponseEntity<AnimalsDTO> response = this.animalsController.save(animalsDTO, multipartFiles);
