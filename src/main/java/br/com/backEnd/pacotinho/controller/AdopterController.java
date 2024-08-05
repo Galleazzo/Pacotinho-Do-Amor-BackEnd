@@ -15,14 +15,12 @@ public class AdopterController {
 
     @PostMapping
     public ResponseEntity<AdopterDTO> createAdopter(@RequestBody AdopterDTO adopterDTO) {
-        AdopterDTO createdAdopter = adopterService.createAdopter(adopterDTO);
-        return ResponseEntity.ok(createdAdopter);
+        return ResponseEntity.ok(adopterService.createAdopter(adopterDTO));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AdopterDTO> updateAdopter(@PathVariable Long id, @RequestBody AdopterDTO adopterDTO) {
-        AdopterDTO updatedAdopter = adopterService.updateAdopter(id, adopterDTO);
-        return ResponseEntity.ok(updatedAdopter);
+        return ResponseEntity.ok(adopterService.updateAdopter(id, adopterDTO));
     }
 
     @DeleteMapping("/{id}")
@@ -33,13 +31,11 @@ public class AdopterController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AdopterDTO> getAdopterById(@PathVariable Long id) {
-        AdopterDTO adopter = adopterService.getAdopterById(id);
-        return ResponseEntity.ok(adopter);
+        return ResponseEntity.ok(adopterService.getAdopterById(id));
     }
 
     @PostMapping("/{adopterId}/adopt/{animalId}")
     public ResponseEntity<AdopterDTO> adoptAnimal(@PathVariable Long adopterId, @PathVariable Long animalId) {
-        AdopterDTO adopter = adopterService.adoptAnimal(adopterId, animalId);
-        return ResponseEntity.ok(adopter);
+        return ResponseEntity.ok(adopterService.adoptAnimal(adopterId, animalId));
     }
 }

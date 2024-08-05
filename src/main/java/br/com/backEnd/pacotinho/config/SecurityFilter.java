@@ -3,6 +3,7 @@ package br.com.backEnd.pacotinho.config;
 import br.com.backEnd.pacotinho.repository.UserRepository;
 import br.com.backEnd.pacotinho.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,23 +27,27 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String tokenJWT = retrieveToken(request);
-        String subject;
-        if(tokenJWT != null) {
-            subject = this.tokenService.checkToken(tokenJWT);
-            UserDetails user = this.userRepository.findByUsername(subject);
+        try {
+            String tokenJWT = retrieveToken(request);
+            if (tokenJWT != null) {
+                String subject = this.tokenService.checkToken(tokenJWT);
+                UserDetails user = this.userRepository.findByUsername(subject);
 
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            }
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            response.getWriter().write("Token JWT invalido ou expirado");
         }
-        filterChain.doFilter(request, response);
     }
 
     private String retrieveToken(HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
-        if(authorizationHeader != null)
+        if (authorizationHeader != null) {
             return authorizationHeader.replace("Bearer ", "");
-
+        }
         return null;
     }
 }
