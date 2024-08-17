@@ -19,7 +19,7 @@ public class UserController {
         try{
             this.service.saveUser(user);
         }catch (Exception e){
-            throw new ResponseStatusException( HttpStatus.BAD_REQUEST, e.getMessage() );
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
