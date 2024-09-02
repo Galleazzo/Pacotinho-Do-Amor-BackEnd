@@ -2,7 +2,9 @@ package service;
 
 import br.com.backEnd.pacotinho.model.Adopter;
 import br.com.backEnd.pacotinho.model.Animals;
+import br.com.backEnd.pacotinho.model.dto.AddressDTO;
 import br.com.backEnd.pacotinho.model.dto.AdopterDTO;
+import br.com.backEnd.pacotinho.model.dto.ContactDTO;
 import br.com.backEnd.pacotinho.repository.AdopterRepository;
 import br.com.backEnd.pacotinho.repository.AnimalsRepository;
 import br.com.backEnd.pacotinho.service.AdopterService;
@@ -15,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -73,6 +76,20 @@ public class AdopterServiceTest {
 
     @Test
     public void testUpdateAdopter() {
+        AdopterDTO dto = new AdopterDTO();
+        dto.setId(1L);
+        dto.setFullName("John Doe");
+        dto.setDateOfBirth("10/10/2003");
+        dto.setResidenceType("casa");
+        dto.setAllowsPets(true);
+        dto.setPreferredAnimalType("cao");
+        dto.setPreferredAnimalAge("0");
+        dto.setPreferredAnimalGender("m");
+        dto.setAddress(new AddressDTO());
+        dto.setAnimals(new HashSet<>());
+        dto.setContact(new ContactDTO());
+        dto.setPartner(new AdopterDTO());
+
         when(adopterRepository.findById(1L)).thenReturn(Optional.of(adopter));
         when(adopterRepository.save(any(Adopter.class))).thenReturn(adopter);
         when(modelMapper.map(adopter, AdopterDTO.class)).thenReturn(adopterDTO);

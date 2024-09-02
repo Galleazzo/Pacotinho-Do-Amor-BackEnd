@@ -61,7 +61,6 @@ public class AdopterService {
         Adopter adopter = adopterRepository.findById(adopterId).orElseThrow(() -> new RuntimeException("Adopter not found with id " + adopterId));
         Animals animal = animalsRepository.findById(animalId).orElseThrow(() -> new RuntimeException("Animal not found with id " + animalId));
 
-        // Ensure the relationship is correctly set from both sides
         adopter.getAnimals().add(animal);
 
         if (animal.getAdopterPeople().size() < 2) {
@@ -70,8 +69,8 @@ public class AdopterService {
             throw new RuntimeException("Animal already has maximum number of adopters");
         }
 
-        animalsRepository.save(animal);  // Save the animal with the new adopter relationship
-        Adopter savedAdopter = adopterRepository.save(adopter);  // Save the adopter with the new animal relationship
+        animalsRepository.save(animal);
+        Adopter savedAdopter = adopterRepository.save(adopter);
 
         return modelMapper.map(savedAdopter, AdopterDTO.class);
     }

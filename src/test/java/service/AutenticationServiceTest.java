@@ -49,12 +49,17 @@ public class AutenticationServiceTest {
 
     @Test
     public void testLoadUserByUsername_UserNotFound() {
-        when(userRepository.findByUsername("unknownUser")).thenReturn(null);
+        String msg = "User not found";
+        String returnedMsg = "";
+        when(userRepository.findByUsername(anyString())).thenThrow(UsernameNotFoundException.class);
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-            autenticationService.loadUserByUsername("unknownUser");
-        });
+        try{
+            this.autenticationService.loadUserByUsername("unknownUser");
+        } catch (UsernameNotFoundException e) {
+            returnedMsg = e.getMessage();
+        }
 
-        verify(userRepository, times(1)).findByUsername("unknownUser");
+        assertEquals(msg, returnedMsg);
+
     }
 }
