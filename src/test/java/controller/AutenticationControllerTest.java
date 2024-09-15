@@ -1,9 +1,8 @@
 package controller;
 
-import br.com.backEnd.pacotinho.controller.AutenticationController;
-import br.com.backEnd.pacotinho.model.User;
-import br.com.backEnd.pacotinho.model.dto.UserDTO;
-import br.com.backEnd.pacotinho.model.dto.tokenDTO;
+import br.com.backEnd.pacotinho.adapters.controllers.AutenticationController;
+import br.com.backEnd.pacotinho.core.domain.entities.User;
+import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
 import br.com.backEnd.pacotinho.service.TokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

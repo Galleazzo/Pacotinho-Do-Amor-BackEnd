@@ -3,8 +3,8 @@ package controller;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.backEnd.pacotinho.controller.AnimalsController;
-import br.com.backEnd.pacotinho.model.dto.AnimalsDTO;
+import br.com.backEnd.pacotinho.adapters.controllers.AnimalsController;
+import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
 import br.com.backEnd.pacotinho.service.AnimalsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

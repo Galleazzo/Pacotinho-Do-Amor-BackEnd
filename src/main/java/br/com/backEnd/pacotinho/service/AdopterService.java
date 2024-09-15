@@ -1,17 +1,16 @@
 package br.com.backEnd.pacotinho.service;
 
-import br.com.backEnd.pacotinho.model.Adopter;
-import br.com.backEnd.pacotinho.model.Animals;
-import br.com.backEnd.pacotinho.model.dto.AdopterDTO;
-import br.com.backEnd.pacotinho.repository.AdopterRepository;
-import br.com.backEnd.pacotinho.repository.AnimalsRepository;
+import br.com.backEnd.pacotinho.core.domain.entities.Adopter;
+import br.com.backEnd.pacotinho.core.domain.entities.Animals;
+import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
+import br.com.backEnd.pacotinho.adapters.repositories.AdopterRepository;
+import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class AdopterService {

@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.service;
 
-import br.com.backEnd.pacotinho.model.User;
+import br.com.backEnd.pacotinho.core.domain.entities.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

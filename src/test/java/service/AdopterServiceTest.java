@@ -1,12 +1,12 @@
 package service;
 
-import br.com.backEnd.pacotinho.model.Adopter;
-import br.com.backEnd.pacotinho.model.Animals;
-import br.com.backEnd.pacotinho.model.dto.AddressDTO;
-import br.com.backEnd.pacotinho.model.dto.AdopterDTO;
-import br.com.backEnd.pacotinho.model.dto.ContactDTO;
-import br.com.backEnd.pacotinho.repository.AdopterRepository;
-import br.com.backEnd.pacotinho.repository.AnimalsRepository;
+import br.com.backEnd.pacotinho.core.domain.entities.Adopter;
+import br.com.backEnd.pacotinho.core.domain.entities.Animals;
+import br.com.backEnd.pacotinho.adapters.dtos.AddressDTO;
+import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
+import br.com.backEnd.pacotinho.adapters.dtos.ContactDTO;
+import br.com.backEnd.pacotinho.adapters.repositories.AdopterRepository;
+import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import br.com.backEnd.pacotinho.service.AdopterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

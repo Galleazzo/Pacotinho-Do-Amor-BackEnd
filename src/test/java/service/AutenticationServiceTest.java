@@ -1,7 +1,7 @@
 package service;
 
-import br.com.backEnd.pacotinho.model.User;
-import br.com.backEnd.pacotinho.repository.UserRepository;
+import br.com.backEnd.pacotinho.core.domain.entities.User;
+import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
 import br.com.backEnd.pacotinho.service.AutenticationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

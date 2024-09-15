@@ -1,6 +1,6 @@
 package service;
 
-import br.com.backEnd.pacotinho.repository.AnimalsRepository;
+import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import br.com.backEnd.pacotinho.service.AnimalsService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

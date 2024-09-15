@@ -1,13 +1,9 @@
 package br.com.backEnd.pacotinho.service;
 
-import br.com.backEnd.pacotinho.model.Animals;
-import br.com.backEnd.pacotinho.model.ImageAnimalModel;
-import br.com.backEnd.pacotinho.model.dto.AnimalsDTO;
-import br.com.backEnd.pacotinho.repository.AnimalsRepository;
-import br.com.backEnd.pacotinho.type.AnimalAge;
-import br.com.backEnd.pacotinho.type.AnimalSize;
-import br.com.backEnd.pacotinho.type.AnimalType;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.backEnd.pacotinho.core.domain.entities.Animals;
+import br.com.backEnd.pacotinho.core.domain.entities.ImageAnimalModel;
+import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
+import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
@@ -27,7 +22,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 @Service
 public class AnimalsService {

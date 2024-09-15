@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.service;
 
-import br.com.backEnd.pacotinho.repository.UserRepository;
+import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

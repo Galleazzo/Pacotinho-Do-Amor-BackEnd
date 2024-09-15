@@ -3,8 +3,8 @@ package controller;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.backEnd.pacotinho.controller.AdopterController;
-import br.com.backEnd.pacotinho.model.dto.AdopterDTO;
+import br.com.backEnd.pacotinho.adapters.controllers.AdopterController;
+import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
 import br.com.backEnd.pacotinho.service.AdopterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

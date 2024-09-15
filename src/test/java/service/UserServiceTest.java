@@ -1,8 +1,8 @@
 package service;
 
-import br.com.backEnd.pacotinho.model.User;
-import br.com.backEnd.pacotinho.model.dto.UserDTO;
-import br.com.backEnd.pacotinho.repository.UserRepository;
+import br.com.backEnd.pacotinho.core.domain.entities.User;
+import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
+import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
 import br.com.backEnd.pacotinho.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

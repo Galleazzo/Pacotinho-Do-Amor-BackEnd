@@ -1,8 +1,8 @@
 package br.com.backEnd.pacotinho.service;
 
-import br.com.backEnd.pacotinho.model.User;
-import br.com.backEnd.pacotinho.model.dto.UserDTO;
-import br.com.backEnd.pacotinho.repository.UserRepository;
+import br.com.backEnd.pacotinho.core.domain.entities.User;
+import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
+import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
