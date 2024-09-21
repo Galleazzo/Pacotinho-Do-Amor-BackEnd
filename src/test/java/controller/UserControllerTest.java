@@ -1,6 +1,6 @@
 package controller;
 
-import br.com.backEnd.pacotinho.adapters.controllers.UserController;
+import br.com.backEnd.pacotinho.adapters.controllers.impl.UserController;
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
 import br.com.backEnd.pacotinho.service.UserService;
 import org.junit.jupiter.api.BeforeEach;

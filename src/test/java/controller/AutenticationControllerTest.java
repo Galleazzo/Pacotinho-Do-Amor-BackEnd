@@ -1,6 +1,6 @@
 package controller;
 
-import br.com.backEnd.pacotinho.adapters.controllers.AutenticationController;
+import br.com.backEnd.pacotinho.adapters.controllers.impl.AutenticationController;
 import br.com.backEnd.pacotinho.core.domain.entities.User;
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
 import br.com.backEnd.pacotinho.service.TokenService;

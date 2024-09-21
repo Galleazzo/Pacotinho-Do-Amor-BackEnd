@@ -1,41 +1,19 @@
 package br.com.backEnd.pacotinho.adapters.controllers;
 
 import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
-import br.com.backEnd.pacotinho.service.AdopterService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/adopters")
-public class AdopterController {
+public interface AdopterController {
 
-    @Autowired
-    private AdopterService adopterService;
 
-    @PostMapping
-    public ResponseEntity<AdopterDTO> createAdopter(@RequestBody AdopterDTO adopterDTO) {
-        return ResponseEntity.ok(adopterService.createAdopter(adopterDTO));
-    }
+    ResponseEntity<AdopterDTO> createAdopter(AdopterDTO adopterDTO);
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AdopterDTO> updateAdopter(@PathVariable Long id, @RequestBody AdopterDTO adopterDTO) {
-        return ResponseEntity.ok(adopterService.updateAdopter(id, adopterDTO));
-    }
+    ResponseEntity<AdopterDTO> updateAdopter(Long id, AdopterDTO adopterDTO);
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdopter(@PathVariable Long id) {
-        adopterService.deleteAdopter(id);
-        return ResponseEntity.noContent().build();
-    }
+    ResponseEntity<Void> deleteAdopter(Long id);
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AdopterDTO> getAdopterById(@PathVariable Long id) {
-        return ResponseEntity.ok(adopterService.getAdopterById(id));
-    }
+    ResponseEntity<AdopterDTO> getAdopterById(Long id);
 
-    @PostMapping("/{adopterId}/adopt/{animalId}")
-    public ResponseEntity<AdopterDTO> adoptAnimal(@PathVariable Long adopterId, @PathVariable Long animalId) {
-        return ResponseEntity.ok(adopterService.adoptAnimal(adopterId, animalId));
-    }
+    ResponseEntity<AdopterDTO> adoptAnimal(Long adopterId, Long animalId);
+
 }

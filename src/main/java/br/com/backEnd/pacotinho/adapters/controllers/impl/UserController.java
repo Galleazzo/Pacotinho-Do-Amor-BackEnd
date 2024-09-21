@@ -1,4 +1,4 @@
-package br.com.backEnd.pacotinho.adapters.controllers;
+package br.com.backEnd.pacotinho.adapters.controllers.impl;
 
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
 import br.com.backEnd.pacotinho.service.UserService;

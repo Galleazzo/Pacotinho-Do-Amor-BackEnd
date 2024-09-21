@@ -1,4 +1,4 @@
-package br.com.backEnd.pacotinho.core.usecases.adopter;
+package br.com.backEnd.pacotinho.core.usecases.adopter.impl;
 
 import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
 import br.com.backEnd.pacotinho.adapters.repositories.AdopterRepository;

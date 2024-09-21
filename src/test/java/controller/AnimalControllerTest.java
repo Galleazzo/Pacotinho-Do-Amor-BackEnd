@@ -3,7 +3,7 @@ package controller;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.backEnd.pacotinho.adapters.controllers.AnimalsController;
+import br.com.backEnd.pacotinho.adapters.controllers.impl.AnimalsController;
 import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
 import br.com.backEnd.pacotinho.service.AnimalsService;
 import org.junit.jupiter.api.DisplayName;
