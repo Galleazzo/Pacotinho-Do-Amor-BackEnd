@@ -1,5 +1,6 @@
 package br.com.backEnd.pacotinho.adapters.controllers.impl;
 
+import br.com.backEnd.pacotinho.adapters.controllers.AnimalsController;
 import br.com.backEnd.pacotinho.core.domain.entities.ImageAnimalModel;
 import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
 import br.com.backEnd.pacotinho.service.AnimalsService;
@@ -15,11 +16,12 @@ import java.util.*;
 
 @RestController(value = "APIs to get, post, put and delete animals")
 @RequestMapping("/animals")
-public class AnimalsController {
+public class AnimalsControllerImpl implements AnimalsController {
 
     @Autowired
     private AnimalsService animalsService;
 
+    @Override
     @GetMapping
     public ResponseEntity<AnimalsDTO> getById(@RequestParam Long id) {
         try {
@@ -29,6 +31,7 @@ public class AnimalsController {
         }
     }
 
+    @Override
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<AnimalsDTO> save(@RequestPart("animal") AnimalsDTO animalsDTO, @RequestPart(value = "imageFile", required = false) MultipartFile[] file) throws Exception {
         Set<ImageAnimalModel> images = new HashSet<>();
@@ -41,22 +44,26 @@ public class AnimalsController {
         return new ResponseEntity<>(this.animalsService.save(animalsDTO), HttpStatus.CREATED);
     }
 
+    @Override
     @GetMapping(path = "/getByCriteria")
     public ResponseEntity<Page<AnimalsDTO>> getByCriteria(@RequestParam String name, @RequestParam Integer page, @RequestParam Integer pageSize, @RequestParam String sort, @RequestParam String order){
         return new ResponseEntity<>(this.animalsService.getByCriteria(name, page, pageSize, sort, order), HttpStatus.OK);
     }
 
+    @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@RequestParam Long id) throws Exception {
         animalsService.deleteAnimal(id);
     }
 
+    @Override
     @GetMapping(path = "/getAll")
     public ResponseEntity<List<AnimalsDTO>> getAllAnimals(){
         return new ResponseEntity<>(this.animalsService.getAll(), HttpStatus.OK);
     }
 
+    @Override
     @PostMapping(path = "/changeActive")
     public void changeActive(@RequestParam Long id, @RequestParam() Date adoptionDate) {
         this.animalsService.changeActive(id, adoptionDate);
