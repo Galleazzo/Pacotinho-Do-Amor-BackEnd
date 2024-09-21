@@ -1,5 +1,6 @@
 package br.com.backEnd.pacotinho.adapters.controllers.impl;
 
+import br.com.backEnd.pacotinho.adapters.controllers.AuthenticationController;
 import br.com.backEnd.pacotinho.core.domain.entities.User;
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
 import br.com.backEnd.pacotinho.adapters.dtos.tokenDTO;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-public class AutenticationController {
+public class AuthenticationControllerImpl implements AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -22,6 +23,7 @@ public class AutenticationController {
     @Autowired
     private TokenService tokenService;
 
+    @Override
     @PostMapping(path = "/login", produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO) throws Exception{
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword());
@@ -32,6 +34,7 @@ public class AutenticationController {
         return ResponseEntity.ok(new tokenDTO(tokenJWT));
     }
 
+    @Override
     @GetMapping("/checkToken")
     public ResponseEntity<Boolean> checkTokenValidity(@RequestParam("token") String token) {
         try {
