@@ -1,4 +1,9 @@
 package br.com.backEnd.pacotinho.core.usecases.Animals;
 
-public class GetByCriteriaUseCase {
+import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
+import org.springframework.data.domain.Page;
+
+public interface GetByCriteriaUseCase {
+
+    Page<AnimalsDTO> getByCriteria(String name, Integer page, Integer pageSize, String sort, String order);
 }

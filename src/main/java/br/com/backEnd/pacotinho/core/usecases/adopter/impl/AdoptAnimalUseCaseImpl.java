@@ -8,6 +8,7 @@ import br.com.backEnd.pacotinho.core.domain.entities.Animals;
 import br.com.backEnd.pacotinho.core.usecases.adopter.AdoptAnimalUseCase;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 public class AdoptAnimalUseCaseImpl implements AdoptAnimalUseCase {
 
@@ -21,6 +22,7 @@ public class AdoptAnimalUseCaseImpl implements AdoptAnimalUseCase {
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional
     public AdopterDTO adoptAnimal(Long adopterId, Long animalId) {
         Adopter adopter = adopterRepository.findById(adopterId).orElseThrow(() -> new RuntimeException("Adopter not found with id " + adopterId));
         Animals animal = animalsRepository.findById(animalId).orElseThrow(() -> new RuntimeException("Animal not found with id " + animalId));

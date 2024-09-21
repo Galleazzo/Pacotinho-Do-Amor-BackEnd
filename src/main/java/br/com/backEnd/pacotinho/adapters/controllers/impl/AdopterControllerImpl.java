@@ -2,8 +2,7 @@ package br.com.backEnd.pacotinho.adapters.controllers.impl;
 
 import br.com.backEnd.pacotinho.adapters.controllers.AdopterController;
 import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
-import br.com.backEnd.pacotinho.core.usecases.adopter.AdoptAnimalUseCase;
-import br.com.backEnd.pacotinho.service.AdopterService;
+import br.com.backEnd.pacotinho.core.usecases.adopter.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,34 +12,43 @@ import org.springframework.web.bind.annotation.*;
 public class AdopterControllerImpl implements AdopterController {
 
     @Autowired
-    private AdopterService adopterService;
+    private AdoptAnimalUseCase adoptAnimalUseCase;
 
     @Autowired
-    private AdoptAnimalUseCase adoptAnimalUseCase;
+    private CreateAdopterUseCase createAdopter;
+
+    @Autowired
+    private DeleteAdopterUseCase deleteAdopter;
+
+    @Autowired
+    private GetAdopterById getAdopterById;
+
+    @Autowired
+    private UpdateAdopterUseCase updateAdopter;
 
     @Override
     @PostMapping
     public ResponseEntity<AdopterDTO> createAdopter(@RequestBody AdopterDTO adopterDTO) {
-        return ResponseEntity.ok(adopterService.createAdopter(adopterDTO));
+        return ResponseEntity.ok(this.createAdopter.createAdopter(adopterDTO));
     }
 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<AdopterDTO> updateAdopter(@PathVariable Long id, @RequestBody AdopterDTO adopterDTO) {
-        return ResponseEntity.ok(adopterService.updateAdopter(id, adopterDTO));
+        return ResponseEntity.ok(this.updateAdopter.updateAdopter(id, adopterDTO));
     }
 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdopter(@PathVariable Long id) {
-        adopterService.deleteAdopter(id);
+        this.deleteAdopter.deleteAdopter(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<AdopterDTO> getAdopterById(@PathVariable Long id) {
-        return ResponseEntity.ok(adopterService.getAdopterById(id));
+        return ResponseEntity.ok(this.getAdopterById.getAdopterById(id));
     }
 
     @Override

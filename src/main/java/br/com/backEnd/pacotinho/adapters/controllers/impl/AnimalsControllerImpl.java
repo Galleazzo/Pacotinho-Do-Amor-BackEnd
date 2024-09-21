@@ -3,7 +3,7 @@ package br.com.backEnd.pacotinho.adapters.controllers.impl;
 import br.com.backEnd.pacotinho.adapters.controllers.AnimalsController;
 import br.com.backEnd.pacotinho.core.domain.entities.ImageAnimalModel;
 import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
-import br.com.backEnd.pacotinho.service.AnimalsService;
+import br.com.backEnd.pacotinho.core.usecases.Animals.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -19,13 +19,28 @@ import java.util.*;
 public class AnimalsControllerImpl implements AnimalsController {
 
     @Autowired
-    private AnimalsService animalsService;
+    private ChangeActiveUseCase changeActiveUseCase;
+
+    @Autowired
+    private DeleteAnimalUseCase deleteAnimalUseCase;
+
+    @Autowired
+    private GetByCriteriaUseCase getByCriteriaUseCase;
+
+    @Autowired
+    private GetByIdUseCase getById;
+
+    @Autowired
+    private SaveUseCase saveUseCase;
+
+    @Autowired
+    private UploadImageUseCase uploadImageUseCase;
 
     @Override
     @GetMapping
     public ResponseEntity<AnimalsDTO> getById(@RequestParam Long id) {
         try {
-            return new ResponseEntity<>(animalsService.getById(id), HttpStatus.OK);
+            return new ResponseEntity<>(this.getById.getById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -37,36 +52,31 @@ public class AnimalsControllerImpl implements AnimalsController {
         Set<ImageAnimalModel> images = new HashSet<>();
 
         if (file != null && file.length > 0) {
-            images = this.animalsService.uplodImage(file);
+            images = this.uploadImageUseCase.uploadImage(file);
         }
 
         animalsDTO.setAnimalImage(images);
-        return new ResponseEntity<>(this.animalsService.save(animalsDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.saveUseCase.save(animalsDTO), HttpStatus.CREATED);
     }
 
     @Override
     @GetMapping(path = "/getByCriteria")
     public ResponseEntity<Page<AnimalsDTO>> getByCriteria(@RequestParam String name, @RequestParam Integer page, @RequestParam Integer pageSize, @RequestParam String sort, @RequestParam String order){
-        return new ResponseEntity<>(this.animalsService.getByCriteria(name, page, pageSize, sort, order), HttpStatus.OK);
+        return new ResponseEntity<>(this.getByCriteriaUseCase.getByCriteria(name, page, pageSize, sort, order), HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@RequestParam Long id) throws Exception {
-        animalsService.deleteAnimal(id);
+        this.deleteAnimalUseCase.deleteAnimal(id);
     }
 
-    @Override
-    @GetMapping(path = "/getAll")
-    public ResponseEntity<List<AnimalsDTO>> getAllAnimals(){
-        return new ResponseEntity<>(this.animalsService.getAll(), HttpStatus.OK);
-    }
 
     @Override
     @PostMapping(path = "/changeActive")
     public void changeActive(@RequestParam Long id, @RequestParam() Date adoptionDate) {
-        this.animalsService.changeActive(id, adoptionDate);
+        this.changeActiveUseCase.changeActive(id, adoptionDate);
     }
 
 }

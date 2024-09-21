@@ -18,7 +18,5 @@ public interface AnimalsController {
 
     void deleteById(Long id) throws Exception;
 
-    ResponseEntity<List<AnimalsDTO>> getAllAnimals();
-
     void changeActive(Long id, Date adoptionDate);
 }
