@@ -1,4 +1,4 @@
-package br.com.backEnd.pacotinho.service;
+package br.com.backEnd.pacotinho.infrastructure.security;
 
 import br.com.backEnd.pacotinho.core.domain.entities.User;
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;

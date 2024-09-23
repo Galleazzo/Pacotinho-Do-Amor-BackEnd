@@ -1,7 +1,7 @@
 package br.com.backEnd.pacotinho.infrastructure.config;
 
 import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
-import br.com.backEnd.pacotinho.service.TokenService;
+import br.com.backEnd.pacotinho.infrastructure.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -2,7 +2,7 @@ package br.com.backEnd.pacotinho.adapters.controllers.impl;
 
 import br.com.backEnd.pacotinho.adapters.controllers.UserController;
 import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
-import br.com.backEnd.pacotinho.service.UserService;
+import br.com.backEnd.pacotinho.infrastructure.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
