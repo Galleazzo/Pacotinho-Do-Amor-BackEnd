@@ -35,5 +35,4 @@ public class UserService{
         userDTO.setPassword(user.getPassword());
         return userDTO;
     }
-
 }
