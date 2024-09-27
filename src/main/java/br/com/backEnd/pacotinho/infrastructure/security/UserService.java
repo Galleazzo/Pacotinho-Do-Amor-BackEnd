@@ -1,7 +1,7 @@
 package br.com.backEnd.pacotinho.infrastructure.security;
 
 import br.com.backEnd.pacotinho.core.domain.entities.User;
-import br.com.backEnd.pacotinho.adapters.dtos.UserDTO;
+import br.com.backEnd.pacotinho.adapters.web.dtos.UserDTO;
 import br.com.backEnd.pacotinho.adapters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

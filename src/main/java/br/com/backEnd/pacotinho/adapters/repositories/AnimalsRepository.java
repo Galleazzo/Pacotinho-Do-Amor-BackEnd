@@ -1,7 +1,7 @@
 package br.com.backEnd.pacotinho.adapters.repositories;
 
 import br.com.backEnd.pacotinho.core.domain.entities.Animals;
-import br.com.backEnd.pacotinho.adapters.dtos.AnimalsCriteria;
+import br.com.backEnd.pacotinho.adapters.web.dtos.AnimalsCriteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

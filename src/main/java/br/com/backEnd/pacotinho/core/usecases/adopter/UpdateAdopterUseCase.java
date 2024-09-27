@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.core.usecases.adopter;
 
-import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
+import br.com.backEnd.pacotinho.adapters.web.dtos.AdopterDTO;
 
 public interface UpdateAdopterUseCase {
 

@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.core.usecases.Animals.impl;
 
-import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
+import br.com.backEnd.pacotinho.adapters.web.dtos.AnimalsDTO;
 import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import br.com.backEnd.pacotinho.core.domain.entities.Animals;
 import br.com.backEnd.pacotinho.core.usecases.Animals.GetAllUseCase;

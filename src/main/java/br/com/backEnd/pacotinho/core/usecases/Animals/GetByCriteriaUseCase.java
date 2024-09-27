@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.core.usecases.Animals;
 
-import br.com.backEnd.pacotinho.adapters.dtos.AnimalsDTO;
+import br.com.backEnd.pacotinho.adapters.web.dtos.AnimalsDTO;
 import org.springframework.data.domain.Page;
 
 public interface GetByCriteriaUseCase {

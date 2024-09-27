@@ -1,6 +1,6 @@
 package br.com.backEnd.pacotinho.core.usecases.adopter.impl;
 
-import br.com.backEnd.pacotinho.adapters.dtos.AdopterDTO;
+import br.com.backEnd.pacotinho.adapters.web.dtos.AdopterDTO;
 import br.com.backEnd.pacotinho.adapters.repositories.AdopterRepository;
 import br.com.backEnd.pacotinho.adapters.repositories.AnimalsRepository;
 import br.com.backEnd.pacotinho.core.domain.entities.Adopter;
